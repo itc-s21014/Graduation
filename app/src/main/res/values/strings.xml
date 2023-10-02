@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">pbl</string>
+    <string name="app_name">myapplication</string>
     <string name="login">ログイン</string>
     <string name="name">ユーザー名</string>
     <string name="passwd">パスワード</string>
