@@ -22,7 +22,7 @@ class ExecutionActivity : AppCompatActivity() {
     private fun scheduleScreenTransition(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, EndActivity::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val triggerTimeMillis = System.currentTimeMillis() + (5 * 60 * 1000) // 5分後に遷移
 
