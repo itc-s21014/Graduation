@@ -1,11 +1,5 @@
 <resources>
     <string name="app_name">myapplication</string>
-    <string name="login">ログイン</string>
-    <string name="name">ユーザー名</string>
-    <string name="passwd">パスワード</string>
-    <string name="login2">ログイン</string>
-
-    <string name="register">登録</string>
     <string name="re_turn">←</string>
     <string name="task2">タスク名</string>
     <string name="time">所要時間</string>
@@ -46,14 +40,4 @@
         ②登録が完了したらさっそく使ってみましょう！「使ってみる」または「START」ボタンから時刻設定画面に移動して、現在時刻と出発予定時刻の入力をします。\n\n\n
         ③入力を終えたら「START」してみましょう！次のタスクにとりかかる時間になると通知でお知らせします！(「RESET」ボタンを押すと、タイマーを中断してホーム画面に戻ります。)
     </string>
-
-
-    <string name="startbutton">はじめる</string>
-    <string name="Userregister">ユーザー登録が完了しました!</string>
-    <string name="sign">新規登録</string>
-
-    <string name="menu">MENU</string>
-    <string name="task"> タスク設定</string>
-    <string name="character">性格設定</string>
-    <string name="menu_back">←</string>
 </resources>
