@@ -30,6 +30,9 @@
             android:name=".SettingFinishedActivity"
             android:exported="false"/>
         <activity
+            android:name=".ExecutionActivity"
+            android:exported="false"/>
+        <activity
             android:name=".EndActivity"
             android:exported="false"/>
         <activity
