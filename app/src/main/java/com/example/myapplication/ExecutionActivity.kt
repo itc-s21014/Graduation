@@ -7,9 +7,14 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityExecutionBinding
+import android.widget.TextView
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class ExecutionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityExecutionBinding
+    private lateinit var timeTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +22,23 @@ class ExecutionActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         scheduleScreenTransition(this)
+
+        timeTextView = findViewById(R.id.timeTextView)
+
+        displayCurrentTime()
     }
+
+    private fun displayCurrentTime() {
+
+        val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
+        val currentTime = sdf.format(Date())
+
+        timeTextView.text = "$currentTime"
+    }
+}
+
+
+
 
     private fun scheduleScreenTransition(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -28,4 +49,3 @@ class ExecutionActivity : AppCompatActivity() {
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTimeMillis, pendingIntent)
     }
-}
