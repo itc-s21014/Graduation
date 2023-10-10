@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class TaskSettingActivity : AppCompatActivity() {
-    var addName: EditText? = null
-    var addAge: EditText? = null
+    var addTask: EditText? = null
+    var addTime: EditText? = null
     var addBtn: Button? = null
     var updateBtn: Button? = null
     var deleteBtn: Button? = null
@@ -24,8 +24,8 @@ class TaskSettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_task_setting)
 
         //部品の取得
-        addName = findViewById<View>(R.id.addName) as EditText
-        addAge = findViewById<View>(R.id.addAge) as EditText
+        addTask = findViewById<View>(R.id.addTask) as EditText
+        addTime = findViewById<View>(R.id.addTime) as EditText
         addBtn = findViewById<View>(R.id.addBtn) as Button
         updateBtn = findViewById<View>(R.id.updateBtn) as Button
         deleteBtn = findViewById<View>(R.id.deleteBtn) as Button
@@ -40,45 +40,45 @@ class TaskSettingActivity : AppCompatActivity() {
         //データを追加
         addBtn!!.setOnClickListener {
             val `val` = ContentValues()
-            `val`.put("name", addName!!.text.toString())
-            `val`.put("age", addAge!!.text.toString())
-            db.insert("person", null, `val`)
+            `val`.put("task", addTask!!.text.toString())
+            `val`.put("time", addTime!!.text.toString())
+            db.insert("tasktable", null, `val`)
         }
 
         //データの更新
         updateBtn!!.setOnClickListener { //nameとageを取得
-            val name = addName!!.text.toString()
-            val age = addAge!!.text.toString()
+            val task = addTask!!.text.toString()
+            val time = addTime!!.text.toString()
 
             //ContentValuesに値を入れる
             val `val` = ContentValues()
-            `val`.put("age", age)
+            `val`.put("time", time)
 
             //データベースを更新
-            db.update("person", `val`, "name=?", arrayOf(name))
+            db.update("tasktable", `val`, "task=?", arrayOf(task))
         }
 
         //データの削除
         deleteBtn!!.setOnClickListener { //名前を取得
-            val name = addName!!.text.toString()
+            val task = addTask!!.text.toString()
 
             //ContentValuesに値を入れる
             val `val` = ContentValues()
-            `val`.put("name", name)
+            `val`.put("task", task)
 
             //データベースを更新
-            db.delete("person", "name=?", arrayOf(name))
+            db.delete("tasktable", "task=?", arrayOf(task))
         }
 
         //データの全削除
-        deleteAllBtn!!.setOnClickListener { db.delete("person", null, null) }
+        deleteAllBtn!!.setOnClickListener { db.delete("tasktable", null, null) }
 
         //データを表示
         showBtn!!.setOnClickListener { //TextViewをリセットする
             disp!!.setText(null)
             val c = db.query(
-                "person",
-                arrayOf("name", "age"),
+                "tasktable",
+                arrayOf("task", "time"),
                 null,
                 null,
                 null,

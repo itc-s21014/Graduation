@@ -15,7 +15,7 @@ class MyDbHelper(context: Context?) : SQLiteOpenHelper(context, DBNAME, null, ve
         private const val version = 1
     }
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL("CREATE TABLE person(name TEXT NOT NULL, age TEXT);")
+        db.execSQL("CREATE TABLE tasktable(task TEXT NOT NULL, time TEXT);")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {}
