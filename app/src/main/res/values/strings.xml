@@ -40,4 +40,8 @@
         ②登録が完了したらさっそく使ってみましょう！「使ってみる」または「START」ボタンから時刻設定画面に移動して、現在時刻と出発予定時刻の入力をします。\n\n\n
         ③入力を終えたら「START」してみましょう！次のタスクにとりかかる時間になると通知でお知らせします！(「RESET」ボタンを押すと、タイマーを中断してホーム画面に戻ります。)
     </string>
+    <string name="hint_key">company</string>
+    <string name="hint_value">US$price</string>
+    <string name="insert">insert</string>
+    <string name="read">read</string>
 </resources>
