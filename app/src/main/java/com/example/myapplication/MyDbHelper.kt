@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.content.ContentValues
 
 
 /**
@@ -19,4 +20,5 @@ class MyDbHelper(context: Context?) : SQLiteOpenHelper(context, DBNAME, null, ve
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {}
+
 }

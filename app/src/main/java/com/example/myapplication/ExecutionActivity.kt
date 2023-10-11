@@ -11,15 +11,21 @@ import android.widget.TextView
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import android.os.Handler
 
 class ExecutionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityExecutionBinding
     private lateinit var timeTextView: TextView
+    private val dateFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+    private val handler = Handler()
+    private lateinit var updateTimeRunnable: Runnable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExecutionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        timeTextView = binding.timeTextView
+        updateTimeRunnable = Runnable { updateClock() }
 
         scheduleScreenTransition(this)
 
@@ -27,10 +33,25 @@ class ExecutionActivity : AppCompatActivity() {
 
         displayCurrentTime()
     }
+    override fun onResume() {
+        super.onResume()
+        // アクティビティがフォアグラウンドにある間、1秒ごとに時刻を更新
+        handler.postDelayed(updateTimeRunnable, 1000)
+    }
+    override fun onPause() {
+        super.onPause()
+        // アクティビティがバックグラウンドにあるときに更新を停止
+        handler.removeCallbacks(updateTimeRunnable)
+    }
+    private fun updateClock() {
+        val currentTime = dateFormat.format(Date())
+        timeTextView.text = "$currentTime"
+        handler.postDelayed(updateTimeRunnable, 1000) // 1秒ごとに更新
+    }
 
     private fun displayCurrentTime() {
 
-        val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
+        val sdf = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
         val currentTime = sdf.format(Date())
 
         timeTextView.text = "$currentTime"
