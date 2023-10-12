@@ -16,7 +16,7 @@ import android.os.Handler
 class ExecutionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityExecutionBinding
     private lateinit var timeTextView: TextView
-    private val dateFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+    private val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
     private val handler = Handler()
     private lateinit var updateTimeRunnable: Runnable
 
@@ -51,7 +51,7 @@ class ExecutionActivity : AppCompatActivity() {
 
     private fun displayCurrentTime() {
 
-        val sdf = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+        val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
         val currentTime = sdf.format(Date())
 
         timeTextView.text = "$currentTime"
