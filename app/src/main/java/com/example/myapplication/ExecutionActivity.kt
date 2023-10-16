@@ -27,6 +27,11 @@ class ExecutionActivity : AppCompatActivity() {
         binding = ActivityExecutionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.resetBtn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         timeTextView = findViewById(R.id.timeTextView)
 
         taskList.add(Pair("10:00 AM - 11:00 AM", "支度のタスク1"))
@@ -71,7 +76,7 @@ class ExecutionActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
         val currentTime = sdf.format(Date())
 
-        timeTextView.text = "$currentTime"
+        timeTextView.text = currentTime
     }
 
     private fun updateRealTime() {
@@ -83,7 +88,7 @@ class ExecutionActivity : AppCompatActivity() {
                 val currentTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
 
                 timeRangeTextView.text = currentTime
-                textView7.text = "$currentTime"
+                textView7.text = getTaskForTime(currentTime)
 
                 handler.postDelayed(this, 1000)
             }
