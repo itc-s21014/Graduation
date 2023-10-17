@@ -19,6 +19,8 @@ class ExecutionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityExecutionBinding
     private lateinit var timeTextView: TextView
     private lateinit var taskTextView: TextView
+    private lateinit var updateTimeRunnable: Runnable
+    private val dateFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
     private val handler = Handler(Looper.getMainLooper())
     private val taskList = ArrayList<Pair<String, String>>()
 
@@ -26,6 +28,14 @@ class ExecutionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityExecutionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        timeTextView = binding.timeTextView
+        updateTimeRunnable = Runnable { updateClock() }
+
+        binding.resetBtn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         timeTextView = findViewById(R.id.timeTextView)
 
@@ -51,6 +61,22 @@ class ExecutionActivity : AppCompatActivity() {
         }, updateTimeDelayMillis.toLong())
     }
 
+    override fun onResume() {
+        super.onResume()
+        handler.postDelayed(updateTimeRunnable, 1000)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        handler.removeCallbacks(updateTimeRunnable)
+    }
+
+    private fun updateClock() {
+        val currentTime = dateFormat.format(Date())
+        timeTextView.text = currentTime
+        handler.postDelayed(updateTimeRunnable, 1000)
+    }
+
     private fun updateTask() {
         val currentTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
         val task = getTaskForTime(currentTime)
@@ -71,7 +97,7 @@ class ExecutionActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
         val currentTime = sdf.format(Date())
 
-        timeTextView.text = "$currentTime"
+        timeTextView.text = currentTime
     }
 
     private fun updateRealTime() {
@@ -83,7 +109,7 @@ class ExecutionActivity : AppCompatActivity() {
                 val currentTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
 
                 timeRangeTextView.text = currentTime
-                textView7.text = "$currentTime"
+                textView7.text = getTaskForTime(currentTime)
 
                 handler.postDelayed(this, 1000)
             }
