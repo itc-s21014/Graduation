@@ -1,3 +1,3 @@
 package com.example.myapplication
 
-data class Datalist(var name: String, var contact: String)
+data class Datalist(var id: Int, var name: String, var time: String)

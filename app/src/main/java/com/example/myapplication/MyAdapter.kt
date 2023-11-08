@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyAdapter(var userList: ArrayList<Datalist>): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyAdapter(var taskList: ArrayList<Datalist>): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     private lateinit var mListener: onItemClickListener
 
@@ -19,8 +19,8 @@ class MyAdapter(var userList: ArrayList<Datalist>): RecyclerView.Adapter<MyAdapt
     }
 
     class MyViewHolder(itemView: View, listener: onItemClickListener): RecyclerView.ViewHolder(itemView){
-        val tname: TextView = itemView.findViewById(R.id.textView)
-        val tnumber: TextView = itemView.findViewById(R.id.textView2)
+        val name: TextView = itemView.findViewById(R.id.textView)
+        val time: TextView = itemView.findViewById(R.id.textView2)
 
         init {
             itemView.setOnClickListener {
@@ -35,12 +35,12 @@ class MyAdapter(var userList: ArrayList<Datalist>): RecyclerView.Adapter<MyAdapt
     }
 
     override fun getItemCount(): Int {
-        return userList.size
+        return taskList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = userList[position]
-        holder.tname.text = currentItem.name
-        holder.tnumber.text = currentItem.contact
+        val currentItem = taskList[position]
+        holder.name.text = currentItem.name
+        holder.time.text = currentItem.time
     }
 }

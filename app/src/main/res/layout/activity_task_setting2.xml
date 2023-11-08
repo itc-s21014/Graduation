@@ -24,14 +24,14 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
-        app:startIconDrawable="@drawable/baseline_person_24"
-        android:layout_marginTop="50dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
+        android:hint="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:startIconDrawable="@drawable/baseline_task_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textedit"
@@ -43,21 +43,21 @@
         android:id="@+id/textInputLayout2"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:hint="Phone"
-        app:startIconDrawable="@drawable/baseline_phone_24"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:startIconDrawable="@drawable/baseline_access_time_filled_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textedit2"
             android:layout_width="match_parent"
-            android:inputType="phone"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="time" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

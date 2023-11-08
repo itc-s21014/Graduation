@@ -46,24 +46,26 @@ class TaskSettingActivity : AppCompatActivity() {
         dbh = DBHelper(this)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        displayuser()
+        displaytask()
     }
 
-    private fun displayuser() {
+    private fun displaytask() {
         val newcursor: Cursor? = dbh.gettext()
         newArray = ArrayList<Datalist>()
         while (newcursor!!.moveToNext()){
-            val uname = newcursor.getString(0)
-            val unumber = newcursor.getString(1)
-            newArray.add(Datalist(uname, unumber))
+            val id = newcursor.getInt(0)
+            val name = newcursor.getString(1)
+            val time = newcursor.getString(2)
+            newArray.add(Datalist(id, name, time))
         }
         adapter = MyAdapter(newArray)
         recyclerView.adapter = adapter
         adapter.onItemClickListener(object : MyAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
                 val intent = Intent(this@TaskSettingActivity, TaskSettingActivity3::class.java)
+                intent.putExtra("id", newArray[position].id)
                 intent.putExtra("name", newArray[position].name)
-                intent.putExtra("phone", newArray[position].contact)
+                intent.putExtra("time", newArray[position].time)
                 startActivity(intent)
             }
         })

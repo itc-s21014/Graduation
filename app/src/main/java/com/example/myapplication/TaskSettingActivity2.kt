@@ -11,7 +11,7 @@ import com.google.android.material.textfield.TextInputEditText
 class TaskSettingActivity2 : AppCompatActivity() {
 
     private lateinit var name: TextInputEditText
-    private lateinit var phone: TextInputEditText
+    private lateinit var time: TextInputEditText
     private lateinit var save: Button
     private lateinit var db: DBHelper
 
@@ -20,26 +20,25 @@ class TaskSettingActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_task_setting2)
 
         name = findViewById(R.id.textedit)
-        phone = findViewById(R.id.textedit2)
+        time = findViewById(R.id.textedit2)
         save = findViewById(R.id.button)
         db = DBHelper(this)
+        val id = intent.getIntExtra("id", 0)
 
         save.setOnClickListener {
-            val intent = Intent(this, TaskSettingActivity::class.java)
             val names = name.text.toString()
-            val numbers = phone.text.toString()
-            val savedata = db.saveuserdata(names, numbers)
-            if (TextUtils.isEmpty(names) || TextUtils.isEmpty(numbers)){
-                Toast.makeText(this, "Add Name & Phone Number", Toast.LENGTH_SHORT).show()
-            }
-            else{
-                if (savedata==true){
-                    Toast.makeText(this, "Save Contact", Toast.LENGTH_SHORT).show()
-                }
-                else{
-                    Toast.makeText(this, "Exist Contact", Toast.LENGTH_SHORT).show()
+            val times = time.text.toString()
+            if (TextUtils.isEmpty(names) || TextUtils.isEmpty(times)){
+                Toast.makeText(this, "タスク名と時間を入力してください", Toast.LENGTH_SHORT).show()
+            } else{
+                val savedata = db.savetaskdata(names, times)
+                if (savedata){
+                    Toast.makeText(this, "保存しました", Toast.LENGTH_SHORT).show()
+                } else{
+                    Toast.makeText(this, "保存できませんでした", Toast.LENGTH_SHORT).show()
                 }
             }
+            val intent = Intent(this, TaskSettingActivity::class.java)
             startActivity(intent)
 
         }
